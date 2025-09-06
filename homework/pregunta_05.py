@@ -15,3 +15,14 @@ def pregunta_05():
     [('A', 9, 2), ('B', 9, 1), ('C', 9, 0), ('D', 8, 3), ('E', 9, 1)]
 
     """
+    with open('./files/input/data.csv', mode='r', encoding='utf-8') as f:
+        data = f.readlines()
+
+        letras = [str(line.split("\t")[0]) for line in data]
+        Numeros = [int(line.split("\t")[1]) for line in data]
+        letras_unicas = sorted(set(letras))
+        resultado = []
+        for letra in letras_unicas:
+            nums = [num for l, num in zip(letras, Numeros) if l == letra]
+            resultado.append((letra, max(nums), min(nums)))
+    return resultado

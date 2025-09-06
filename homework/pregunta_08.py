@@ -27,3 +27,13 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+    with open('./files/input/data.csv', mode='r', encoding='utf-8') as f:
+        data = f.readlines()
+
+        letras = [str(line.split("\t")[0]) for line in data]
+        Numeros = [int(line.split("\t")[1]) for line in data]
+        resultado = []
+        for i in range(10):
+            lista_letras = sorted(list(set([letras[j] for j in range(len(letras)) if Numeros[j] == i])))
+            resultado.append((i, lista_letras))
+    return resultado

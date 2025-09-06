@@ -16,3 +16,17 @@ def pregunta_11():
 
 
     """
+    with open('./files/input/data.csv', mode='r', encoding='utf-8') as f:
+        data = f.readlines()
+        col2 = [int(line.split("\t")[1]) for line in data]
+        col4 = [line.split("\t")[3].split(",") for line in data]
+        for i in range(len(col4)):
+            col4[i] = [letra.lower() for letra in col4[i]]
+        diccionario = {}
+        for i in range(len(col4)):
+            for letra in col4[i]:
+                if letra in diccionario:
+                    diccionario[letra] += col2[i]
+                else:
+                    diccionario[letra] = col2[i]
+    return dict(sorted(diccionario.items()))

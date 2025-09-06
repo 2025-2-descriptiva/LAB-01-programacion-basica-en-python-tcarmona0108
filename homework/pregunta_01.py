@@ -14,3 +14,8 @@ def pregunta_01():
     214
 
     """
+    with open('./files/input/data.csv', mode='r', encoding='utf-8') as file:
+        data = file.readlines()
+
+    suma = sum(int(line.split("\t")[1]) for line in data)
+    return suma

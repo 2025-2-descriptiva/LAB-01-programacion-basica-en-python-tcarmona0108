@@ -15,3 +15,16 @@ def pregunta_03():
     [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
 
     """
+    with open('./files/input/data.csv', mode='r', encoding='utf-8') as f:
+        data = f.readlines()
+
+        letras = [str(line.split("\t")[0]) for line in data]
+        Numeros = [int(line.split("\t")[1]) for line in data]
+        letras_unicas = sorted(set(letras))
+        resultado = []
+        for letra in letras_unicas:
+            suma = sum(num for l, num in zip(letras, Numeros) if l == letra)
+            resultado.append((letra, suma))
+
+    return resultado
+

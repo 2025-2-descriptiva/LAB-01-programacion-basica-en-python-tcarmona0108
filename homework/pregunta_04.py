@@ -26,3 +26,11 @@ def pregunta_04():
      ('12', 3)]
 
     """
+    with open('./files/input/data.csv', mode='r', encoding='utf-8') as f:
+        data = f.readlines()
+
+        fecha = [str(line.split("\t")[2]) for line in data]
+        meses = [f.split("-")[1] for f in fecha]
+        meses_unicos = sorted(set(meses))
+        resultado = [(mes, meses.count(mes)) for mes in meses_unicos]
+    return resultado
